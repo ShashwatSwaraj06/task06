@@ -1,11 +1,13 @@
 variable "name_prefix" {
-  type    = string
-  default = "cmaz-57d8b090-mod6"
+  type        = string
+  default     = "cmaz-57d8b090-mod6"
+  description = "Prefix for all resource names"
 }
 
 variable "location" {
-  type    = string
-  default = "East US"
+  type        = string
+  default     = "East US"
+  description = "Azure region for resources"
 }
 
 variable "allowed_ip_address" {
@@ -20,7 +22,8 @@ variable "sql_admin_username" {
 }
 
 variable "tags" {
-  type = map(string)
+  type        = map(string)
+  description = "Tags to apply to all resources"
   default = {
     Creator = "shashwat_swaraj@epam.com"
   }
