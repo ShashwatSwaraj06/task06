@@ -6,10 +6,9 @@ variable "name_prefix" {
 
 variable "location" {
   type        = string
-  default     = "East US"
   description = "Azure region for resources"
+  default     = "East US 2" # Changed from East US
 }
-
 variable "allowed_ip_address" {
   type        = string
   description = "IP address to allow SQL Server firewall access"
