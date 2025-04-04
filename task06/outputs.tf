@@ -1,5 +1,5 @@
 output "sql_server_fqdn" {
-  description = "Fully qualified domain name of the SQL Server"
+  description = "SQL Server FQDN"
   value       = module.sql.sql_server_fqdn
 }
 

@@ -25,7 +25,7 @@ variable "dotnet_version" {
 
 variable "sql_connection_string" {
   type        = string
-  description = "SQL connection string"
+  description = "SQL database connection string"
   sensitive   = true
 }
 
