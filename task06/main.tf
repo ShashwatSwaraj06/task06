@@ -26,10 +26,11 @@ module "sql" {
 module "webapp" {
   source = "./modules/webapp"
 
+  # Only pass variables defined in webapp module's variables.tf
   resource_group_name   = azurerm_resource_group.rg.name
+  service_plan_name     = local.asp_name # Changed from asp_name
+  webapp_name           = local.app_name # Changed from app_name
   location              = var.location
-  asp_name              = local.asp_name
-  app_name              = local.app_name
   dotnet_version        = "8.0"
   sql_connection_string = module.sql.sql_connection_string
   tags                  = var.tags

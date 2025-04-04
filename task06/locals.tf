@@ -1,10 +1,10 @@
 locals {
-  rg_name            = join("-", [var.name_prefix, "rg"])
-  sql_server_name    = format("%s-%s", var.name_prefix, "sql")
-  sql_db_name        = format("%s-%s", var.name_prefix, "sql-db")
-  asp_name           = join("-", [var.name_prefix, "asp"])
-  app_name           = join("-", [var.name_prefix, "app"])
-  kv_rg_name         = format("%s-%s", var.name_prefix, "kv-rg")
-  kv_name            = format("%s-%s", var.name_prefix, "kv")
+  rg_name            = "cmaz-57d8b090-mod6-rg"
+  sql_server_name    = "cmaz-57d8b090-mod6-sql"
+  sql_db_name        = "cmaz-57d8b090-mod6-sql-db"
+  asp_name           = "cmaz-57d8b090-mod6-asp"
+  app_name           = "cmaz-57d8b090-mod6-app"
+  kv_rg_name         = "cmaz-57d8b090-mod6-kv-rg"
+  kv_name            = "cmaz-57d8b090-mod6-kv"
   firewall_rule_name = "allow-verification-ip"
 }
