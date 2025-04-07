@@ -1,5 +1,5 @@
 locals {
-  name_prefix = "cmaz-57d8b090-mod6" # Define the prefix once for reuse
+  name_prefix = "cmaz-57d8b090-mod6-rg" # Define the prefix once for reuse
 
   rg_name         = format("%s-rg", local.name_prefix)     # Dynamically create resource group name
   sql_server_name = format("%s-sql", local.name_prefix)    # Dynamically create SQL Server name
