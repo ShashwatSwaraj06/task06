@@ -1,36 +1,43 @@
-data "azurerm_key_vault" "existing" {
-  name                = local.kv_name
-  resource_group_name = local.kv_rg_name
+provider "azurerm" {
+  features {}
 }
 
-resource "azurerm_resource_group" "rg" {
+resource "azurerm_resource_group" "main" {
   name     = local.rg_name
-  location = var.location
-  tags     = var.tags
+  location = var.region
+
+  tags = var.tags
 }
+
+
+data "azurerm_key_vault" "main" {
+  name                = var.key_vault_name
+  resource_group_name = var.key_vault_rg_name
+}
+
+
 
 module "sql" {
-  source = "./modules/sql"
-
-  resource_group_name = azurerm_resource_group.rg.name
-  location            = var.location
-  sql_server_name     = local.sql_server_name
-  sql_db_name         = local.sql_db_name
-  sql_admin_username  = var.sql_admin_username
-  firewall_rule_name  = local.firewall_rule_name
-  allowed_ip_address  = var.allowed_ip_address
-  key_vault_id        = data.azurerm_key_vault.existing.id
-  tags                = var.tags
+  source                    = "./modules/sql"
+  region                    = var.region
+  sql_server_name           = local.sql_server_name
+  sql_db_name               = local.sql_db_name
+  resource_group_name       = azurerm_resource_group.main.name
+  key_vault_id              = data.azurerm_key_vault.main.id
+  sql_admin_name            = "sql-admin-user"
+  sql_admin_name_secret     = "sql-admin-name"
+  sql_admin_password_secret = "sql-admin-password"
+  sql_firewall_rule_name    = "allow-verification-ip"
+  allowed_ip_address        = var.allowed_ip_address
+  tags                      = var.tags
 }
 
 module "webapp" {
-  source = "./modules/webapp"
-
-  # Only pass variables defined in webapp module's variables.tf
-  resource_group_name   = azurerm_resource_group.rg.name
-  service_plan_name     = local.asp_name # Changed from asp_name
-  webapp_name           = local.app_name # Changed from app_name
-  location              = var.location
+  source                = "./modules/webapp"
+  region                = var.region
+  resource_group_name   = azurerm_resource_group.main.name
+  app_service_plan      = local.asp_name
+  web_application       = local.app_name
   dotnet_version        = "8.0"
   sql_connection_string = module.sql.sql_connection_string
   tags                  = var.tags

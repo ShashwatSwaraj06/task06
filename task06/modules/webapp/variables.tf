@@ -1,39 +1,35 @@
+variable "region" {
+  description = "Region to deploy Web Application"
+  type        = string
+}
+
 variable "resource_group_name" {
+  description = "Resource Group name to deploy Web Application"
   type        = string
-  description = "Name of the resource group where resources will be deployed"
 }
 
-variable "service_plan_name" {
-  type        = string
+variable "app_service_plan" {
   description = "Name of the App Service Plan"
+  type        = string
 }
 
-variable "webapp_name" {
+variable "web_application" {
+  description = "Name of the Web Application"
   type        = string
-  description = "Name of the Linux Web Application"
-}
-
-variable "location" {
-  type        = string
-  description = "Azure region where resources will be deployed"
 }
 
 variable "dotnet_version" {
+  description = "Dotnet version for the Web Application"
   type        = string
-  description = ".NET version for the web application stack"
-  default     = "8.0"
 }
 
 variable "sql_connection_string" {
+  description = "SQL DB connection string for Web App"
   type        = string
-  description = "Sensitive SQL database connection string"
   sensitive   = true
 }
 
 variable "tags" {
+  description = "Tags to associate with resources"
   type        = map(string)
-  description = "Resource tags to apply to all components"
-  default = {
-    Creator = "shashwat_swaraj@epam.com"
-  }
 }

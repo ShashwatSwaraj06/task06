@@ -1,9 +1,9 @@
 output "sql_server_fqdn" {
-  description = "SQL Server FQDN"
+  description = "Fully qualified domain name of the SQL server"
   value       = module.sql.sql_server_fqdn
 }
 
 output "app_hostname" {
-  description = "Default hostname of the web application"
+  description = "Hostname of the Web App"
   value       = module.webapp.app_hostname
 }

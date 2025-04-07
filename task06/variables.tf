@@ -1,29 +1,24 @@
-variable "name_prefix" {
+variable "key_vault_name" {
+  description = "The name of the existing Key Vault"
   type        = string
-  default     = "cmaz-57d8b090-mod6"
-  description = "Prefix for all resource names"
 }
 
-variable "location" {
+variable "key_vault_rg_name" {
+  description = "Resource group name for the existing Key Vault"
   type        = string
-  description = "Azure region for resources"
-  default     = "East US 2" # Changed from East US
 }
+
+variable "region" {
+  description = "Region to deploy resources"
+  type        = string
+}
+
 variable "allowed_ip_address" {
+  description = "IP Address for firewall rules"
   type        = string
-  description = "IP address to allow SQL Server firewall access"
-}
-
-variable "sql_admin_username" {
-  type        = string
-  description = "SQL administrator username"
-  default     = "sqladmin"
 }
 
 variable "tags" {
+  description = "Tags to associate with resources"
   type        = map(string)
-  description = "Tags to apply to all resources"
-  default = {
-    Creator = "shashwat_swaraj@epam.com"
-  }
 }
